@@ -58,9 +58,6 @@ export default function Home() {
         <h1>
           Willkommen zum Stundenrechner / <small>SWM</small>
         </h1>
-        {/* <p>
-          Get started by editing <code>pages/index.js</code>
-        </p> */}
         <Container>
           <Row>
           <Card style={{ width: '12rem', margin: '0.5rem' }}>
