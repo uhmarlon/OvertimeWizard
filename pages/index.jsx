@@ -31,12 +31,18 @@ export default function Home() {
 
   useEffect(() => {
     setworkhours1(setRightTime(timecome1, timegehen1))
-    localStorage.setItem('workhours1', workhours1);
     setworkhours2(setRightTime(timecome2, timegehen2))
-    localStorage.setItem('workhours2', workhours2);
     setworkhours3(setRightTime(timecome3, timegehen3))
     setworkhours4(setRightTime(timecome4, timegehen4))
     setworkhours5(setRightTime(timecome5, timegehen5))
+    var h4s = document.querySelectorAll("h4");
+    h4s.forEach(h4 => {
+      if (h4.innerHTML.startsWith("-")) {
+        h4.style.color = "red";
+      } else {
+        h4.style.color = "green";
+      }
+    })
   })
 
   function setRightTime(come, gehen) {
@@ -62,7 +68,7 @@ export default function Home() {
       </Head>
       <Container>
       <h1 style={{textAlign: "center"}}>
-          Willkommen zum Stundenrechner der 
+          Willkommen zum Stundenrechner der  <br />
           <img src="/swmicon-1500x500.png" alt="<small>SWM</small>" style={{height: 50, width: 150}}/>
         </h1>
         <Container>
