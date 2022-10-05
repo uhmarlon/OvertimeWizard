@@ -49,11 +49,10 @@ export default function Home() {
     var time = (gehen - come)/60/60;
     if (time >= 9.75){
       return (time - 0.75);
-    } else {
-      if (time => 6) {
+    } else if (time >= 6) {
         return (time - 0.50);
       }
-    }
+    return time;
   }
 
   var wochenstunden = Math.round(((workhours1 - 7.8)+(workhours2 - 7.8)+(workhours3 - 7.8)+(workhours4 - 7.8)+(workhours5 - 7.8)) * 100) / 100;
@@ -79,7 +78,7 @@ export default function Home() {
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
-              <h4>{workhours1.toFixed(2)}</h4>
+              <h4>{workhours1}</h4>
               Überstunden: <h4>{Math.round((workhours1 - 7.8) * 100) / 100}</h4>
             </Card.Text>
             </Card.Body>
