@@ -134,7 +134,7 @@ export default function Home() {
       </Container>
 
       <footer className="cntr-footer">
-          Created with ❤ by Marlon Gehrmann
+          Created with ❤ by Marlon Gehrmann and Julian Mayer
       </footer>
       
     </Container>
