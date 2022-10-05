@@ -4,6 +4,7 @@ import { Container, Row, Card, Button } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
 
 
+
 export default function Home() {
   const [timecome1, settimecome1] = useState(23400);
   const [timegehen1, settimegehen1] = useState(53280);
@@ -25,9 +26,14 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
+  //set in LocalStorage
+
+
   useEffect(() => {
     setworkhours1(setRightTime(timecome1, timegehen1))
+    localStorage.setItem('workhours1', workhours1);
     setworkhours2(setRightTime(timecome2, timegehen2))
+    localStorage.setItem('workhours2', workhours2);
     setworkhours3(setRightTime(timecome3, timegehen3))
     setworkhours4(setRightTime(timecome4, timegehen4))
     setworkhours5(setRightTime(timecome5, timegehen5))
@@ -49,13 +55,13 @@ export default function Home() {
 
   
   return (
-    <Container className="md-container">
+    <Container className="lg-container">
       <Head>
         <title>Stundenrechner By Marlon Gehrmann</title>
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <Container>
-        <h1>
+        <h1 className="text-center">
           Willkommen zum Stundenrechner / <small>SWM</small>
         </h1>
         <Container>
@@ -115,7 +121,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          </Row>
+          </Row> <br/>
           <h3>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
         </Container>
       </Container>
