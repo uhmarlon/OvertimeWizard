@@ -55,8 +55,9 @@ export default function Home() {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <Container>
-        <h1>
-          Willkommen zum Stundenrechner / <small>SWM</small>
+      <h1 style={{textAlign: "center"}}>
+          Willkommen zum Stundenrechner der 
+          <img src="/swmicon-1500x500.png" alt="<small>SWM</small>" style={{height: 50, width: 150}}/>
         </h1>
         <Container>
           <Row>
