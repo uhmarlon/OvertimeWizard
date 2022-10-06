@@ -26,7 +26,6 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
-  //set in LocalStorage
 
 
   useEffect(() => {
@@ -78,7 +77,7 @@ export default function Home() {
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
-              <h4>{workhours1}</h4>
+              <h4>{workhours1.toFixed(2)}</h4>
               Überstunden: <h4>{Math.round((workhours1 - 7.8) * 100) / 100}</h4>
             </Card.Text>
             </Card.Body>
