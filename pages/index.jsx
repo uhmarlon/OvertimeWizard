@@ -26,6 +26,8 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
+  //cange the time picker steps after first use
+
 
 
   useEffect(() => {
@@ -128,6 +130,23 @@ export default function Home() {
           </Card>
           </Row> <br/>
           <h3>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
+          <Button variant="primary"
+            onClick={() => {
+              settimecome1(0);
+              settimegehen1(0);
+              settimecome2(0);
+              settimegehen2(0);
+              settimecome3(0);
+              settimegehen3(0);
+              settimecome4(0);
+              settimegehen4(0);
+              settimecome5(0);
+              settimegehen5(0);
+            }}
+            style={{ display: 'block' }}
+          >
+            Zurücksetzen
+          </Button>
         </Container>
       </Container>
 
