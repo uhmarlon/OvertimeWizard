@@ -82,7 +82,7 @@ export default function Home() {
       <Container>
       <h1 style={{textAlign: "center"}}>
           Willkommen zum Stundenrechner der  <br />
-          <img src="/swmicon.svg" alt="<small>SWM</small>" style={{height: 80, width: 240}}/>
+          <img src="/swmicon.svg" alt="SWM" style={{height: 80, width: 240}}/>
         </h1>
         <Container>
           <Row>
