@@ -48,11 +48,24 @@ export default function Home() {
 
   function setRightTime(come, gehen) {
     var time = (gehen - come)/60/60;
-    if (time >= 9.75){
-      return (time - 0.75);
-    } else if (time >= 6) {
-        return (time - 0.50);
-      }
+
+    if (time >= 6 && time <= 6.5) 
+    {
+      return 6;
+    }
+    else if (time > 6.5 && time < 9)
+    {
+      return time - 0.5;
+    }
+    else if (time >= 9 && time <= 9.75)
+    {
+      return 8.5;
+    }
+    else if (time > 9.75)
+    {
+      return time - 0.75;
+    }
+    console.log("le time " + time);
     return time;
   }
 
@@ -64,12 +77,12 @@ export default function Home() {
     <Container className="lg-container">
       <Head>
         <title>Stundenrechner By Marlon Gehrmann</title>
-        <link rel="icon" href="/favicon-32x32.png" />
+        <link rel="icon" href="/swmstreifen.png" />
       </Head>
       <Container>
       <h1 style={{textAlign: "center"}}>
           Willkommen zum Stundenrechner der  <br />
-          <img src="/swmicon-1500x500.png" alt="<small>SWM</small>" style={{height: 50, width: 150}}/>
+          <img src="/swmicon.svg" alt="<small>SWM</small>" style={{height: 80, width: 240}}/>
         </h1>
         <Container>
           <Row>
@@ -132,16 +145,16 @@ export default function Home() {
           <h3>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
           <Button variant="primary"
             onClick={() => {
-              settimecome1(0);
-              settimegehen1(0);
-              settimecome2(0);
-              settimegehen2(0);
-              settimecome3(0);
-              settimegehen3(0);
-              settimecome4(0);
-              settimegehen4(0);
-              settimecome5(0);
-              settimegehen5(0);
+              settimecome1(23400);
+              settimegehen1(53280);
+              settimecome2(23400);
+              settimegehen2(53280);
+              settimecome3(23400);
+              settimegehen3(53280);
+              settimecome4(23400);
+              settimegehen4(53280);
+              settimecome5(23400);
+              settimegehen5(53280);
             }}
             style={{ display: 'block' }}
           >
