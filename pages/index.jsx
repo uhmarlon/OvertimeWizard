@@ -26,8 +26,10 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
-  //cange the time picker steps after first use
+  const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
+  var currentDay = new Date().getDay();
 
+  //cange the time picker steps after first use
 
 
   useEffect(() => {
@@ -44,6 +46,12 @@ export default function Home() {
         h4.style.color = "green";
       }
     })
+    if(currentDay > 0 && currentDay < 6)
+    {
+      var days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
+      var card = document.getElementById(days[currentDay-1]);
+      card.setAttribute('class', 'card border-dark');
+    }
   })
 
   function setRightTime(come, gehen) {
@@ -75,17 +83,17 @@ export default function Home() {
   return (
     <Container className="lg-container">
       <Head>
-        <title>Stundenrechner By Marlon Gehrmann</title>
+        <title>SWM Stundenrechner</title>
         <link rel="icon" href="/swmstreifen.png" />
       </Head>
       <Container>
       <h1 style={{textAlign: "center"}}>
-          Willkommen zum Stundenrechner der  <br />
+          Willkommen zum Stundenrechner der<br/>
           <img src="/swmicon.svg" alt="SWM" style={{height: 80, width: 240}}/>
         </h1>
         <Container>
           <Row>
-          <Card style={{ width: '12rem', margin: '0.5rem' }}>
+          <Card id='Montag' style={{ width: '12.5rem', margin: '0.5rem'}}>
             <Card.Body>
               <Card.Title>Montag</Card.Title>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -96,7 +104,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card style={{ width: '12rem', margin: '0.5rem' }}>
+          <Card id='Dienstag' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title>Dienstag</Card.Title>
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -107,7 +115,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card style={{ width: '12rem', margin: '0.5rem' }}>
+          <Card id='Mittwoch' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title>Mittwoch</Card.Title>
             <TimePicker value={timecome3} onChange={el => settimecome3(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -118,7 +126,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card style={{ width: '12rem', margin: '0.5rem' }}>
+          <Card id='Donnerstag' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title>Donnerstag</Card.Title>
             <TimePicker value={timecome4} onChange={el => settimecome4(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -129,7 +137,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card style={{ width: '12rem', margin: '0.5rem' }}>
+          <Card id='Freitag' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title>Freitag</Card.Title>
             <TimePicker value={timecome5} onChange={el => settimecome5(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -141,7 +149,7 @@ export default function Home() {
             </Card.Body>
           </Card>
           </Row> <br/>
-          <h3>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
+          <h3 id='bullshit'>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
           <Button variant="primary"
             onClick={() => {
               settimecome1(23400);
