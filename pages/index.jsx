@@ -171,9 +171,8 @@ export default function Home() {
       </Container>
 
       <footer className="cntr-footer">
-          Created with ❤ by Marlon Gehrmann and Julian Maier
+          Created with <Button href='Cat.mp4' variant='light'>❤ </Button> by Marlon Gehrmann and Julian Maier
       </footer>
-      
     </Container>
   )
 }
