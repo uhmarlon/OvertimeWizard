@@ -1,4 +1,7 @@
-export default function setRightTime(come:any, gehen:any) {
+  
+  import Home from "../pages";
+
+  export function setRightTime(come:any, gehen:any) {
     var time = (gehen - come)/60/60;
 
     if (time >= 6 && time <= 6.5) 
@@ -19,3 +22,6 @@ export default function setRightTime(come:any, gehen:any) {
     }
     return time;
   }
+
+
+

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import TimePicker from 'react-bootstrap-time-picker';
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
-import setRightTime from "../src/getRightTime";
+import { setRightTime } from "../src/getRightTime";
 import React from 'react';
 
 
@@ -78,7 +78,7 @@ export default function Home() {
               <Card.Title>Montag</Card.Title>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
-            <Form.Control type="time" onChange={el => console.log(el)}/>
+            <Form.Control type="time" onChange={el => console.log(el.timeStamp)}/>
             <Card.Text>Stunden:<br />
               <h4 className = 'hourTextField'>{workhours1.toFixed(2)}</h4>
               Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</h4>
@@ -131,7 +131,9 @@ export default function Home() {
           </Card>
           </Row> <br/>
           <h3 id='bullshit'>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
-          <Button variant="primary"
+          <Button variant="primary" 
+          // center bootstrap button
+          style={{ display: 'block', margin: '0 auto' }}
             onClick={() => {
               settimecome1(23400);
               settimegehen1(53280);
@@ -144,7 +146,6 @@ export default function Home() {
               settimecome5(23400);
               settimegehen5(53280);
             }}
-            style={{ display: 'block' }}
           >
             Zurücksetzen
           </Button>
