@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import TimePicker from 'react-bootstrap-time-picker';
-import { Container, Row, Card, Button } from 'react-bootstrap'
+import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
+import setRightTime from "../src/getRightTime";
+import React from 'react';
 
 
 
@@ -28,52 +30,31 @@ export default function Home() {
 
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
-
-  //cange the time picker steps after first use
-
-
+  
   useEffect(() => {
     setworkhours1(setRightTime(timecome1, timegehen1))
     setworkhours2(setRightTime(timecome2, timegehen2))
     setworkhours3(setRightTime(timecome3, timegehen3))
     setworkhours4(setRightTime(timecome4, timegehen4))
     setworkhours5(setRightTime(timecome5, timegehen5))
-    var hourTextFields = document.getElementsByName('hourTextField');
-    hourTextFields.forEach(hourTextField => {
-      if (hourTextField.innerHTML.startsWith("-")) {
-      hourTextField.style.color = "red";
-    } else {
-      hourTextField.style.color = "green";
+
+    
+    var hourTextField:any = document.getElementsByClassName("hourTextField");
+    for (var i = 0; i < hourTextField.length; i++) {
+      if (hourTextField[i].textContent.startsWith("-")) {
+        hourTextField[i].style.color = "red";
+      } else {
+        hourTextField[i].style.color = "green";
+      }
     }
-    })
+
     if(currentDay > 0 && currentDay < 6)
     {
       var card = document.getElementById(days[currentDay-1]);
       card.setAttribute('class', 'card border-dark');
     }
+
   })
-
-  function setRightTime(come, gehen) {
-    var time = (gehen - come)/60/60;
-
-    if (time >= 6 && time <= 6.5) 
-    {
-      return 6;
-    }
-    else if (time > 6.5 && time <= 9.5)
-    {
-      return time - 0.5;
-    }
-    else if (time > 9.5 && time <= 9.75)
-    {
-      return 9;
-    }
-    else if (time > 9.75)
-    {
-      return time - 0.75;
-    }
-    return time;
-  }
 
   var wochenstunden = Math.round(((workhours1 - 7.8)+(workhours2 - 7.8)+(workhours3 - 7.8)+(workhours4 - 7.8)+(workhours5 - 7.8)) * 100) / 100;
   
@@ -97,9 +78,10 @@ export default function Home() {
               <Card.Title>Montag</Card.Title>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
+            <Form.Control type="time" onChange={el => console.log(el)}/>
             <Card.Text>Stunden:<br />
-              <h4 name = 'hourTextField'>{workhours1.toFixed(2)}</h4>
-              Überstunden: <h4 name = 'hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</h4>
+              <h4 className = 'hourTextField'>{workhours1.toFixed(2)}</h4>
+              Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</h4>
             </Card.Text>
             </Card.Body>
           </Card>
@@ -109,8 +91,8 @@ export default function Home() {
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen2} onChange={el => settimegehen2(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
-              <h4 name = 'hourTextField'>{workhours2.toFixed(2)}</h4>
-              Überstunden: <h4 name = 'hourTextField'>{Math.round((workhours2 - 7.8) * 100) / 100}</h4>
+              <h4 className = 'hourTextField'>{workhours2.toFixed(2)}</h4>
+              Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours2 - 7.8) * 100) / 100}</h4>
             </Card.Text>  
             </Card.Body>
           </Card>
@@ -120,8 +102,8 @@ export default function Home() {
             <TimePicker value={timecome3} onChange={el => settimecome3(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen3} onChange={el => settimegehen3(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
-              <h4 name = 'hourTextField'>{workhours3.toFixed(2)}</h4>
-              Überstunden: <h4 name = 'hourTextField'>{Math.round((workhours3 - 7.8) * 100) / 100}</h4>
+              <h4 className = 'hourTextField'>{workhours3.toFixed(2)}</h4>
+              Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours3 - 7.8) * 100) / 100}</h4>
             </Card.Text>
             </Card.Body>
           </Card>
@@ -131,8 +113,8 @@ export default function Home() {
             <TimePicker value={timecome4} onChange={el => settimecome4(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen4} onChange={el => settimegehen4(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
-              <h4 name = 'hourTextField'>{workhours4.toFixed(2)}</h4>
-              Überstunden: <h4 name = 'hourTextField'>{Math.round((workhours4 - 7.8) * 100) / 100}</h4>
+              <h4 className = 'hourTextField'>{workhours4.toFixed(2)}</h4>
+              Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours4 - 7.8) * 100) / 100}</h4>
             </Card.Text>
             </Card.Body>
           </Card>
@@ -142,8 +124,8 @@ export default function Home() {
             <TimePicker value={timecome5} onChange={el => settimecome5(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen5} onChange={el => settimegehen5(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
-              <h4 name = 'hourTextField'>{workhours5.toFixed(2)}</h4>
-              Überstunden: <h4 name = 'hourTextField'>{Math.round((workhours5 - 7.8) * 100) / 100}</h4>
+              <h4 className = 'hourTextField'>{workhours5.toFixed(2)}</h4>
+              Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours5 - 7.8) * 100) / 100}</h4>
             </Card.Text>
             </Card.Body>
           </Card>
@@ -170,7 +152,7 @@ export default function Home() {
       </Container>
 
       <footer className="cntr-footer">
-          Created with <Button href='Cat.mp4' variant='light'>❤ </Button> by Marlon Gehrmann and Julian Maier
+          Created with  <a href='Cat.mp4'>❤ </a>  by Marlon Gehrmann and Julian Maier
       </footer>
     </Container>
   )
