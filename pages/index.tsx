@@ -78,7 +78,6 @@ export default function Home() {
               <Card.Title>Montag</Card.Title>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
-            <Form.Control type="time" onChange={el => console.log(el.timeStamp)}/>
             <Card.Text>Stunden:<br />
               <h4 className = 'hourTextField'>{workhours1.toFixed(2)}</h4>
               Überstunden: <h4 className = 'hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</h4>
