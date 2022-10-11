@@ -131,7 +131,7 @@ export default function Home() {
           </Card>
           </Row> <br/>
           <h3 id='bullshit'>Wochenstunden Kontingent: {wochenstunden} Std.</h3>
-          <Button variant="primary" 
+          <Button className='highlight-button'
           // center bootstrap button
           style={{ display: 'block', margin: '0 auto' }}
             onClick={() => {
