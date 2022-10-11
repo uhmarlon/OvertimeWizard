@@ -61,6 +61,7 @@ export default function Home() {
 
   
   return (
+    <body>
     <Container className="lg-container">
       <Head>
         <title>SWM Stundenrechner</title>
@@ -75,7 +76,7 @@ export default function Home() {
           <Row>
           <Card id='Montag' style={{ width: '12.5rem', margin: '0.5rem'}}>
             <Card.Body>
-              <Card.Title>Montag</Card.Title>
+              <Card.Title className='textcenter'>Montag</Card.Title>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
@@ -86,7 +87,7 @@ export default function Home() {
           </Card>
           <Card id='Dienstag' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
-              <Card.Title>Dienstag</Card.Title>
+              <Card.Title className='textcenter'>Dienstag</Card.Title>
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen2} onChange={el => settimegehen2(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
@@ -97,7 +98,7 @@ export default function Home() {
           </Card>
           <Card id='Mittwoch' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
-              <Card.Title>Mittwoch</Card.Title>
+              <Card.Title className='textcenter'>Mittwoch</Card.Title>
             <TimePicker value={timecome3} onChange={el => settimecome3(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen3} onChange={el => settimegehen3(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
@@ -108,7 +109,7 @@ export default function Home() {
           </Card>
           <Card id='Donnerstag' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
-              <Card.Title>Donnerstag</Card.Title>
+              <Card.Title className='textcenter'>Donnerstag</Card.Title>
             <TimePicker value={timecome4} onChange={el => settimecome4(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen4} onChange={el => settimegehen4(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
@@ -119,7 +120,7 @@ export default function Home() {
           </Card>
           <Card id='Freitag' style={{ width: '12.5rem', margin: '0.5rem' }}>
             <Card.Body>
-              <Card.Title>Freitag</Card.Title>
+              <Card.Title className='textcenter'>Freitag</Card.Title>
             <TimePicker value={timecome5} onChange={el => settimecome5(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen5} onChange={el => settimegehen5(el)} start="6:30" end="18:00" step="15" format={24} />
             <Card.Text>Stunden:<br />
@@ -155,5 +156,6 @@ export default function Home() {
           Created with  <a href='Cat.mp4'>❤ </a>  by Marlon Gehrmann and Julian Maier
       </footer>
     </Container>
+    </body>
   )
 }
