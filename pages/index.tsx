@@ -153,7 +153,11 @@ export default function Home() {
       </Container>
 
       <footer className="cntr-footer">
-          Created with  <a href='Cat.mp4'>❤ </a>  by Marlon Gehrmann and Julian Maier
+          Created with  <a href='Cat.mp4'>❤ </a>  by Marlon Gehrmann and Julian Maier 
+      </footer>
+      <footer>
+      This is not an official app of Stadtwerke München <br/>
+      <a href='https://github.com/uhmarlon/Hourscal-SWM'>OPEN SOURCE</a>
       </footer>
     </Container>
     </body>
