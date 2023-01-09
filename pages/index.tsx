@@ -28,7 +28,7 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
-  const [viewM, setviewM] = useState(12.5);
+  const [viewM, setviewM] = useState(9.2);
 
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
@@ -41,6 +41,7 @@ export default function Home() {
         setviewM(12.5);
       }
     }
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
