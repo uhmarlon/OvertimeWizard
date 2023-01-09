@@ -28,8 +28,23 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
+  const [viewM, setviewM] = useState(12.5);
+
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 510) {
+        setviewM(9.2);
+      } else {
+        setviewM(12.5);
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   
   useEffect(() => {
     setworkhours1(setRightTime(timecome1, timegehen1))
@@ -37,7 +52,6 @@ export default function Home() {
     setworkhours3(setRightTime(timecome3, timegehen3))
     setworkhours4(setRightTime(timecome4, timegehen4))
     setworkhours5(setRightTime(timecome5, timegehen5))
-
     
     var hourTextField:any = document.getElementsByClassName("hourTextField");
     for (var i = 0; i < hourTextField.length; i++) {
@@ -74,7 +88,7 @@ export default function Home() {
         </h1>
         <Container>
           <Row>
-          <Card id='Montag' style={{ width: '12.5rem', margin: '0.5rem'}}>
+          <Card id='Montag' style={{ width: viewM +"rem", margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title className='textcenter'>Montag</Card.Title>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -85,7 +99,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card id='Dienstag' style={{ width: '12.5rem', margin: '0.5rem' }}>
+          <Card id='Dienstag' style={{ width: viewM +"rem", margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title className='textcenter'>Dienstag</Card.Title>
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -96,7 +110,7 @@ export default function Home() {
             </Card.Text>  
             </Card.Body>
           </Card>
-          <Card id='Mittwoch' style={{ width: '12.5rem', margin: '0.5rem' }}>
+          <Card id='Mittwoch' style={{ width: viewM +"rem", margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title className='textcenter'>Mittwoch</Card.Title>
             <TimePicker value={timecome3} onChange={el => settimecome3(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -107,7 +121,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card id='Donnerstag' style={{ width: '12.5rem', margin: '0.5rem' }}>
+          <Card id='Donnerstag' style={{ width: viewM +"rem", margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title className='textcenter'>Donnerstag</Card.Title>
             <TimePicker value={timecome4} onChange={el => settimecome4(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
@@ -118,7 +132,7 @@ export default function Home() {
             </Card.Text>
             </Card.Body>
           </Card>
-          <Card id='Freitag' style={{ width: '12.5rem', margin: '0.5rem' }}>
+          <Card id='Freitag' style={{ width: viewM +"rem", margin: '0.5rem' }}>
             <Card.Body>
               <Card.Title className='textcenter'>Freitag</Card.Title>
             <TimePicker value={timecome5} onChange={el => settimecome5(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
