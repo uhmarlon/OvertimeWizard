@@ -38,7 +38,7 @@ export default function Home() {
       if (window.innerWidth < 510) {
         setviewM(9.2);
         if (window.innerWidth < 388) {
-          setviewM(8);
+          setviewM(7);
         } 
       } else {
         setviewM(12.5);
