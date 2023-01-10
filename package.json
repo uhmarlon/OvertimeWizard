@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.6",
     "bootstrap": "^4.4.1",
     "next": "latest",
     "openweathermap-ts": "^1.2.10",
