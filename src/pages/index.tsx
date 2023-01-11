@@ -29,13 +29,19 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
-  //todo: remove
-  const [viewM, setviewM] = useState(9.2);
+  const [week, setWeek] = useState<number>(0)
 
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
   
   useEffect(() => {
+    const currentDate: Date = new Date()
+    const startOfYear: Date = new Date(currentDate.getFullYear(), 0, 0)
+    const diffInMilliseconds: number = currentDate.getTime() - startOfYear.getTime()
+    const diffInDays: number = diffInMilliseconds / 86400000
+    const weekNumber: number = Math.ceil(diffInDays / 7)
+    setWeek(weekNumber)
+
     setworkhours1(setRightTime(timecome1, timegehen1))
     setworkhours2(setRightTime(timecome2, timegehen2))
     setworkhours3(setRightTime(timecome3, timegehen3))
@@ -75,8 +81,8 @@ export default function Home() {
         <Image className='object-center' src="/swmicon.svg" alt="SWM" width={240} height={80} />
       </h1>
 
-      <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3 pt-2 pb-2 lg:pb-5'>
-        <div id='Montag' className="row-span-3 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+      <div className='grid grid-cols-1 gap-3 sm:grid-cols-1 md:grid-cols-6 xl:grid-cols-6 pt-1 pb-2 lg:pb-5'>
+        <div id='Montag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Montag</h5>
             <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
@@ -84,7 +90,7 @@ export default function Home() {
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6>
         </div>
 
-        <div id='Dienstag' className="row-span-3 max-w-sm p-6  border border-b-8 border-gray-200 rounded-lg shadow-md">
+        <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-b-8 border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Dienstag</h5>
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen2} onChange={el => settimegehen2(el)} start="6:30" end="18:00" step="15" format={24} />
@@ -92,17 +98,15 @@ export default function Home() {
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours2 - 7.8) * 100) / 100}</b></h6>
         </div>
 
-        <div id='Mittwoch' className="row-span-3 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+        <div id='Mittwoch' className="col-span-2  max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Mittwoch</h5>
             <TimePicker value={timecome3} onChange={el => settimecome3(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen3} onChange={el => settimegehen3(el)} start="6:30" end="18:00" step="15" format={24} />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours3.toFixed(2)}</b></h6>
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours3 - 7.8) * 100) / 100}</b></h6>
         </div>
-      </div>
-      
-      <div className='grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-2 pt-2 lg:pb-5'>
-        <div id="Donnerstag" className="row-span-3 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+
+        <div id="Donnerstag" className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Donnerstag</h5>
             <TimePicker value={timecome4} onChange={el => settimecome4(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen4} onChange={el => settimegehen4(el)} start="6:30" end="18:00" step="15" format={24} />
@@ -110,7 +114,7 @@ export default function Home() {
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours4 - 7.8) * 100) / 100}</b></h6>
         </div>
 
-        <div id='Freitag' className="row-span-3 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+        <div id='Freitag' className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Freitag</h5>
             <TimePicker value={timecome5} onChange={el => settimecome5(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen5} onChange={el => settimegehen5(el)} start="6:30" end="18:00" step="15" format={24} />
@@ -118,6 +122,9 @@ export default function Home() {
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours5 - 7.8) * 100) / 100}</b></h6>
         </div>
       </div>
+      <h4>{week} KW</h4>
+
+
       <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">Wochenstunden Kontingent: <b className='hourTextField'>{wochenstunden} Std.</b> <br/><br/>
         <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded object-center" onClick={() => {
                 settimecome1(23400);
@@ -138,7 +145,7 @@ export default function Home() {
       </footer>
       <footer>
       This is not an official app of Stadtwerke München <br/>
-      <a href='https://github.com/uhmarlon/Hourscal-SWM'>OPEN SOURCE</a>
+      <a href='https://github.com/uhmarlon/Hourscal-SWM' className='text-blue-400'>OPEN SOURCE</a>
       </footer>
       </>
   )
