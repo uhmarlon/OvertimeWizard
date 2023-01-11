@@ -26,5 +26,5 @@
 		</g>
 	</g>
 </g>
-<animate attributeName="fill" values="White;Silver;Gray;Black;Red;Maroon;Yellow;Olive;Lime;Green;Aqua;Teal;Blue;Navy;Fuchsia;Purple;White" dur="15s" repeatCount="indefinite" />
+<animate attributeName="fill" values="White;Silver;Red;Maroon;Yellow;Olive;Lime;Green;Aqua;Teal;Blue;Navy;Fuchsia;Purple;White" dur="15s" repeatCount="indefinite" />
 </svg>

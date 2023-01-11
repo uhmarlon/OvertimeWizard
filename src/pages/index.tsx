@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import TimePicker from 'react-bootstrap-time-picker';
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
-import { setRightTime } from "../src/getRightTime";
+import { setRightTime } from "../util/getRightTime";
 import React from 'react';
 
 
@@ -28,27 +29,11 @@ export default function Home() {
   const [timegehen5, settimegehen5] = useState(53280);
   const [workhours5, setworkhours5] = useState(0);
 
+  //todo: remove
   const [viewM, setviewM] = useState(9.2);
 
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
-
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 510) {
-        setviewM(9.2);
-        if (window.innerWidth < 388) {
-          setviewM(7);
-        } 
-      } else {
-        setviewM(12.5);
-      }
-    }
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  
   
   useEffect(() => {
     setworkhours1(setRightTime(timecome1, timegehen1))
@@ -71,7 +56,6 @@ export default function Home() {
       var card = document.getElementById(days[currentDay-1]);
       card.setAttribute('class', 'card border-dark');
     }
-
   })
 
   var wochenstunden = Math.round(((workhours1 - 7.8)+(workhours2 - 7.8)+(workhours3 - 7.8)+(workhours4 - 7.8)+(workhours5 - 7.8)) * 100) / 100;
@@ -79,17 +63,24 @@ export default function Home() {
 
   
   return (
-    <body>
-    <Container className="lg-container">
+    <>
       <Head>
         <title>SWM Stundenrechner</title>
         <link rel="icon" href="/swmstreifen.png" />
       </Head>
-      <Container>
-      <h1 style={{textAlign: "center"}}>
-          Willkommen zum Stundenrechner der<br/>
-          <img src="/swmicon.svg" alt="SWM" style={{height: 80, width: 240}}/>
-        </h1>
+
+      <h1 className="mt-36 font-bold text-4xl md:text-5xl mb-4 text-center">Willkommen zum Stundenrechner der <br/>
+        <Image className='object-center' src="/swmicon.svg" alt="SWM" width={240} height={80} />
+      </h1>
+
+      <div className="block max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div className="flex items-center space-x-4">
+          <h3 className='mt-36 font-bold text-4xl md:text-5xl mb-4'>Montag</h3>
+          <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
+          <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
+        </div>
+      </div>
+
         <Container>
           <Row>
           <Card id='Montag' style={{ width: viewM +"rem", margin: '0.5rem' }}>
@@ -167,7 +158,6 @@ export default function Home() {
             Zurücksetzen
           </Button>
         </Container>
-      </Container>
 
       <footer className="cntr-footer">
           Created with  <a href='Cat.mp4'>❤ </a>  by Marlon Gehrmann and Julian Maier 
@@ -176,7 +166,6 @@ export default function Home() {
       This is not an official app of Stadtwerke München <br/>
       <a href='https://github.com/uhmarlon/Hourscal-SWM'>OPEN SOURCE</a>
       </footer>
-    </Container>
-    </body>
+      </>
   )
 }

@@ -1,8 +1,10 @@
 /* ensure all pages have Bootstrap CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Path: src\style\index.css */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-body {
-    background-color: #F4F7FD;
-}
 
 .md-container {
   max-width: 800px;
