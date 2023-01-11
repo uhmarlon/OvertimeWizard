@@ -1,4 +1,3 @@
-  
   import Home from "../pages";
 
   export function setRightTime(come:any, gehen:any) {
