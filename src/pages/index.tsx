@@ -69,17 +69,40 @@ export default function Home() {
         <link rel="icon" href="/swmstreifen.png" />
       </Head>
 
+
       <h1 className="mt-36 font-bold text-4xl md:text-5xl mb-4 text-center">Willkommen zum Stundenrechner der <br/>
         <Image className='object-center' src="/swmicon.svg" alt="SWM" width={240} height={80} />
       </h1>
 
-      <div className="block max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-        <div className="flex items-center space-x-4">
-          <h3 className='mt-36 font-bold text-4xl md:text-5xl mb-4'>Montag</h3>
-          <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-          <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
+      <div className='grid grid-rows-2 grid-flow-col gap-4'>
+        <div className="row-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </div>
+
+        <div className="row-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </div>
+
+        <div className="row-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
         </div>
       </div>
+
+      <div className='grid grid-rows-3 grid-flow-col gap-4'>
+        <div className="row-span-3 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </div>
+
+        <div className="row-span-3 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </div>
+      </div>
+      
 
         <Container>
           <Row>

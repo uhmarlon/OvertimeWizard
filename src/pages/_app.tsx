@@ -1,9 +1,21 @@
 import { Analytics } from '@vercel/analytics/react';
 import '../style/index.css'
 import {loadCursor} from '../util/cursor';
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 function MyApp({ Component, pageProps }) {
+  const [colorMode, setColorMode] = useState(null);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const preferredColorMode = prefersDark.matches ? 'dark' : 'light';
+
+    setColorMode(preferredColorMode);
+
+    root.classList.remove('light', 'dark');
+    root.classList.add(preferredColorMode);
+  }, []);
 
   const ballCanvas = useRef<HTMLDivElement>(null);
   useEffect(() => {
