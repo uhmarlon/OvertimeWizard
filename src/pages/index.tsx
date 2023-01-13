@@ -60,8 +60,8 @@ export default function Home() {
     if(currentDay > 0 && currentDay < 6)
     {
       var card = document.getElementById(days[currentDay-1]);
-      card.classList.remove("border-gray-200");
-      card.classList.add("border-gray-500");
+      card.classList.remove("border");
+      card.classList.add("border-4");
     }
   })
 
@@ -90,7 +90,7 @@ export default function Home() {
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6>
         </div>
 
-        <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-b-8 border-gray-200 rounded-lg shadow-md">
+        <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Dienstag</h5>
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen2} onChange={el => settimegehen2(el)} start="6:30" end="18:00" step="15" format={24} />
@@ -122,7 +122,7 @@ export default function Home() {
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours5 - 7.8) * 100) / 100}</b></h6>
         </div>
       </div>
-      <h4>{week} KW</h4>
+      <h4 className='text-gray-600'>{week} KW</h4>
 
 
       <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">Wochenstunden Kontingent: <b className='hourTextField'>{wochenstunden} Std.</b> <br/><br/>

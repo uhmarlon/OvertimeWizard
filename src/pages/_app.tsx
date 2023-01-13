@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <div className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#fff] dark:from-black dark:to-[#0d131f] min-h-screen">
+      <div className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#fff] dark:from-black dark:to-[#001429] min-h-screen">
         <div className="w-[80%] md:w-[45rem]">
           <Component {...pageProps} />
           </div>
