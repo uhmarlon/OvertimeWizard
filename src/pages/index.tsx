@@ -3,15 +3,15 @@ import Image from 'next/image'
 import TimePicker from 'react-bootstrap-time-picker';
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
-import { setRightTime } from "../util/getRightTime";
+import { setRightTime, formTimestamp, reverseFormTimestamp } from "../util/getRightTime";
 import React from 'react';
 
 
 
 export default function Home() {
-  const [timecome1, settimecome1] = useState(23400);
-  const [timegehen1, settimegehen1] = useState(53280);
-  const [workhours1, setworkhours1] = useState(0);
+  const [timecome, settimecome] = useState({ 1: 390, 2: 390, 3: 390, 4: 390, 5: 390 });
+  const [timegehen, settimegehen] = useState({ 1: 900, 2: 900, 3: 900, 4: 900, 5: 900 });
+  const [workhours, setworkhours] = useState({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 });
 
   const [timecome2, settimecome2] = useState(23400);
   const [timegehen2, settimegehen2] = useState(53280);
@@ -42,7 +42,7 @@ export default function Home() {
     const weekNumber: number = Math.ceil(diffInDays / 7)
     setWeek(weekNumber)
 
-    setworkhours1(setRightTime(timecome1, timegehen1))
+    // setworkhours1(setRightTime(timecome1, timegehen1))
     setworkhours2(setRightTime(timecome2, timegehen2))
     setworkhours3(setRightTime(timecome3, timegehen3))
     setworkhours4(setRightTime(timecome4, timegehen4))
@@ -65,7 +65,9 @@ export default function Home() {
     }
   })
 
-  var wochenstunden = Math.round(((workhours1 - 7.8)+(workhours2 - 7.8)+(workhours3 - 7.8)+(workhours4 - 7.8)+(workhours5 - 7.8)) * 100) / 100;
+  var wochenstunden = "5"
+  
+  // Math.round(((workhours1 - 7.8)+(workhours2 - 7.8)+(workhours3 - 7.8)+(workhours4 - 7.8)+(workhours5 - 7.8)) * 100) / 100;
   
 
   
@@ -84,8 +86,19 @@ export default function Home() {
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-1 md:grid-cols-6 xl:grid-cols-6 pt-1 pb-2 lg:pb-5'>
         <div id='Montag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Montag</h5>
-            <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              onChange={el => settimecome({ ...timecome, 1: formTimestamp(el.target.value)})}
+            />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              onChange={el => settimecome({ ...timegehen, 1: formTimestamp(el.target.value)})}
+            />
+
+            {/* <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
+            <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} /> */}
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours1.toFixed(2)}</b></h6>
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6>
         </div>
