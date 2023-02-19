@@ -89,18 +89,20 @@ export default function Home() {
             <input
               className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
               type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timecome[1])}
               onChange={el => settimecome({ ...timecome, 1: formTimestamp(el.target.value)})}
             />
             <input
               className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
               type="time" min="06:30" max="20:00"
-              onChange={el => settimecome({ ...timegehen, 1: formTimestamp(el.target.value)})}
+              value={reverseFormTimestamp(timegehen[1])}
+              onChange={el => settimegehen({ ...timegehen, 1: formTimestamp(el.target.value)})}
             />
 
             {/* <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} /> */}
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours1.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6>
+            {/* <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours1.toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6> */}
         </div>
 
         <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
@@ -140,8 +142,8 @@ export default function Home() {
 
       <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">Wochenstunden Kontingent: <b className='hourTextField'>{wochenstunden} Std.</b> <br/><br/>
         <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded object-center" onClick={() => {
-                settimecome1(23400);
-                settimegehen1(53280);
+                // settimecome1(23400);
+                // settimegehen1(53280);
                 settimecome2(23400);
                 settimegehen2(53280);
                 settimecome3(23400);
