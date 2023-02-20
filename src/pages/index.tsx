@@ -3,7 +3,7 @@ import Image from 'next/image'
 import TimePicker from 'react-bootstrap-time-picker';
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
-import { setRightTime, formTimestamp, reverseFormTimestamp } from "../util/getRightTime";
+import { setRightTime, setRightOvertime, formTimestamp, reverseFormTimestamp } from "../util/getRightTime";
 import React from 'react';
 
 
@@ -96,7 +96,7 @@ export default function Home() {
               onChange={el => settimegehen({ ...timegehen, 1: formTimestamp(el.target.value)})}
             />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[1].toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[1]) * 100) / 100}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((setRightOvertime(workhours[1])) * 100) / 100}</b></h6>
         </div>
 
         <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
@@ -114,7 +114,7 @@ export default function Home() {
               onChange={el => settimegehen({ ...timegehen, 2: formTimestamp(el.target.value)})}
             />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[2].toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[2]) * 100) / 100}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((setRightOvertime(workhours[2])) * 100) / 100}</b></h6>
         </div>
 
         <div id='Mittwoch' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
@@ -132,7 +132,7 @@ export default function Home() {
               onChange={el => settimegehen({ ...timegehen, 3: formTimestamp(el.target.value)})}
             />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[3].toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[3]) * 100) / 100}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((setRightOvertime(workhours[3])) * 100) / 100}</b></h6>
         </div>
 
         <div id='Donnerstag' className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
@@ -150,7 +150,7 @@ export default function Home() {
               onChange={el => settimegehen({ ...timegehen, 4: formTimestamp(el.target.value)})}
             />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[4].toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[4]) * 100) / 100}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((setRightOvertime(workhours[4])) * 100) / 100}</b></h6>
         </div>
 
         <div id='Freitag' className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
@@ -168,7 +168,7 @@ export default function Home() {
               onChange={el => settimegehen({ ...timegehen, 5: formTimestamp(el.target.value)})}
             />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[5].toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[5]) * 100) / 100}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((setRightOvertime(workhours[5])) * 100) / 100}</b></h6>
         </div>
 
       </div>

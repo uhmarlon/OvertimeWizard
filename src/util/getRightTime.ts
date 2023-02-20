@@ -5,22 +5,27 @@
 
     if (time >= 6 && time <= 6.5) 
     {
-      return -1.8;
+      return 6;
     }
     else if (time > 6.5 && time <= 9.5)
     {
-      return time - 8.3;
+      return time - 0.5;
     }
     else if (time > 9.5 && time <= 9.75)
     {
-      return 1.2;
+      return 9;
     }
     else if (time > 9.75)
     {
-      return time - 8.55;
+      return time - 0.75;
     }
-    return time -7.8;
+    return time;
   
+  }
+
+  export function setRightOvertime(time:any)
+  {
+    return time -7.8;
   }
 
   export function formTimestamp(timestamp : any) {
