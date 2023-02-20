@@ -81,8 +81,6 @@ export default function Home() {
 
   var wochenstunden = (overtime[1] + overtime[2] + overtime[3] + overtime[4] + overtime[5]).toFixed(2);
   
-
-  
   return (
     <>
       <Head>
