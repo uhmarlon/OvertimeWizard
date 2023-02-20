@@ -1,25 +1,26 @@
   import Home from "../pages";
 
   export function setRightTime(come:any, gehen:any) {
-    var time = (gehen - come)/60/60;
+    var time = (gehen - come)/60;
 
     if (time >= 6 && time <= 6.5) 
     {
-      return 6;
+      return -1.8;
     }
     else if (time > 6.5 && time <= 9.5)
     {
-      return time - 0.5;
+      return time - 8.3;
     }
     else if (time > 9.5 && time <= 9.75)
     {
-      return 9;
+      return 1.2;
     }
     else if (time > 9.75)
     {
-      return time - 0.75;
+      return time - 8.55;
     }
-    return time;
+    return time -7.8;
+  
   }
 
   export function formTimestamp(timestamp : any) {
