@@ -33,10 +33,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
           </div>
       </div>
-      <div
-        ref={ballCanvas}
-        className="ball-transitions pointer-events-none fixed z-30 h-6 w-6 rounded-full border bg-transparent opacity-0 shadow-md duration-200 border-white" 
-      />
+      
       <Analytics />
     </>
   );
