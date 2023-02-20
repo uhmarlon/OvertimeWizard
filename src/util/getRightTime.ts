@@ -23,9 +23,9 @@
   
   }
 
-  export function setRightOvertime(time:any)
+  export function setRightOvertime(time:any, hoursToWork:any)
   {
-    return time -7.8;
+    return time - hoursToWork;
   }
 
   export function formTimestamp(timestamp : any) {
