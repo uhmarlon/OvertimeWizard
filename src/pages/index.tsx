@@ -63,7 +63,7 @@ export default function Home() {
     }
   })
 
-  var wochenstunden = Math.round(((workhours[1])+(workhours[2])+(workhours[2])+(workhours[2])+(workhours[2])) * 100) / 100;
+  var wochenstunden = Math.round(((workhours[1])+(workhours[2])+(workhours[3])+(workhours[4])+(workhours[5])) * 100) / 100;
   
 
   
