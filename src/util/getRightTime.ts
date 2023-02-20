@@ -50,5 +50,14 @@
     }
   }
 
+  export function minutesToHours(minutes: number) {
+    if (typeof minutes === "number" && !isNaN(minutes)) {
+      return (minutes / 60).toFixed(2);
+    } else {
+      return "0.00"; // default value if the input is invalid
+    }
+  }
+
+
 
 

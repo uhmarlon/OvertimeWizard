@@ -12,27 +12,31 @@ export default function Home() {
   const [timecome, settimecome] = useState({ 1: 390, 2: 390, 3: 390, 4: 390, 5: 390 });
   const [timegehen, settimegehen] = useState({ 1: 900, 2: 900, 3: 900, 4: 900, 5: 900 });
   const [workhours, setworkhours] = useState({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 });
-
-  const [timecome2, settimecome2] = useState(23400);
-  const [timegehen2, settimegehen2] = useState(53280);
-  const [workhours2, setworkhours2] = useState(0);
-
-  const [timecome3, settimecome3] = useState(23400);
-  const [timegehen3, settimegehen3] = useState(53280);
-  const [workhours3, setworkhours3] = useState(0);
-
-  const [timecome4, settimecome4] = useState(23400);
-  const [timegehen4, settimegehen4] = useState(53280);
-  const [workhours4, setworkhours4] = useState(0);
-
-  const [timecome5, settimecome5] = useState(23400);
-  const [timegehen5, settimegehen5] = useState(53280);
-  const [workhours5, setworkhours5] = useState(0);
-
   const [week, setWeek] = useState<number>(0)
-
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
+
+  useEffect(() => {
+    const storedTimecome = JSON.parse(localStorage.getItem("timecome"));
+    if (storedTimecome) {
+      settimecome(storedTimecome);
+    }
+
+    const storedTimegehen = JSON.parse(localStorage.getItem("timegehen"));
+    if (storedTimegehen) {
+      settimegehen(storedTimegehen);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("timecome", JSON.stringify(timecome));
+    localStorage.setItem("timegehen", JSON.stringify(timegehen));
+    setworkhours({ 1: setRightTime(timecome[1], timegehen[1]),
+    2: setRightTime(timecome[2], timegehen[2]),
+    3: setRightTime(timecome[3], timegehen[3]),
+    4: setRightTime(timecome[4], timegehen[4]),
+    5: setRightTime(timecome[5], timegehen[5]) })
+  }, [timecome, timegehen]);
   
   useEffect(() => {
     const currentDate: Date = new Date()
@@ -42,12 +46,6 @@ export default function Home() {
     const weekNumber: number = Math.ceil(diffInDays / 7)
     setWeek(weekNumber)
 
-    // setworkhours1(setRightTime(timecome1, timegehen1))
-    setworkhours2(setRightTime(timecome2, timegehen2))
-    setworkhours3(setRightTime(timecome3, timegehen3))
-    setworkhours4(setRightTime(timecome4, timegehen4))
-    setworkhours5(setRightTime(timecome5, timegehen5))
-    
     var hourTextField:any = document.getElementsByClassName("hourTextField");
     for (var i = 0; i < hourTextField.length; i++) {
       if (hourTextField[i].textContent.startsWith("-")) {
@@ -98,14 +96,11 @@ export default function Home() {
               value={reverseFormTimestamp(timegehen[1])}
               onChange={el => settimegehen({ ...timegehen, 1: formTimestamp(el.target.value)})}
             />
-
-            {/* <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} /> */}
-            {/* <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours1.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6> */}
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[1].toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[1]) * 100) / 100}</b></h6>
         </div>
 
-        <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+        {/* <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Dienstag</h5>
             <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
             <TimePicker value={timegehen2} onChange={el => settimegehen2(el)} start="6:30" end="18:00" step="15" format={24} />
@@ -135,23 +130,14 @@ export default function Home() {
             <TimePicker value={timegehen5} onChange={el => settimegehen5(el)} start="6:30" end="18:00" step="15" format={24} />
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours5.toFixed(2)}</b></h6>
             <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours5 - 7.8) * 100) / 100}</b></h6>
-        </div>
+        </div> */}
       </div>
       <h4 className='text-gray-600'>{week} KW</h4>
 
 
       <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">Wochenstunden Kontingent: <b className='hourTextField'>{wochenstunden} Std.</b> <br/><br/>
         <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded object-center" onClick={() => {
-                // settimecome1(23400);
-                // settimegehen1(53280);
-                settimecome2(23400);
-                settimegehen2(53280);
-                settimecome3(23400);
-                settimegehen3(53280);
-                settimecome4(23400);
-                settimegehen4(53280);
-                settimecome5(23400);
-                settimegehen5(53280);
+          // TODO: Add reset function
               }}>Zurücksetzen</button>
       </h4>
 
