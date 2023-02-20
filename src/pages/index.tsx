@@ -190,7 +190,7 @@ export default function Home() {
 
 
       <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">Wochenstunden Kontingent: <b className='hourTextField'>{wochenstunden} Std.</b> <br/><br/>
-        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded object-center" onClick={() => {
+        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold px-3 py-2 border-b-4 md:py-2 md:px-4 md:border-b-2 border-blue-700 hover:border-blue-500 rounded object-center" onClick={() => {
           settimecome({ 1: 390, 2: 390, 3: 390, 4: 390, 5: 390 })
           settimegehen({ 1: 888, 2: 888, 3: 888, 4: 888, 5: 888 })
               }}>Zurücksetzen</button>
