@@ -3,36 +3,40 @@ import Image from 'next/image'
 import TimePicker from 'react-bootstrap-time-picker';
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
-import { setRightTime } from "../util/getRightTime";
+import { setRightTime, formTimestamp, reverseFormTimestamp } from "../util/getRightTime";
 import React from 'react';
 
 
 
 export default function Home() {
-  const [timecome1, settimecome1] = useState(23400);
-  const [timegehen1, settimegehen1] = useState(53280);
-  const [workhours1, setworkhours1] = useState(0);
-
-  const [timecome2, settimecome2] = useState(23400);
-  const [timegehen2, settimegehen2] = useState(53280);
-  const [workhours2, setworkhours2] = useState(0);
-
-  const [timecome3, settimecome3] = useState(23400);
-  const [timegehen3, settimegehen3] = useState(53280);
-  const [workhours3, setworkhours3] = useState(0);
-
-  const [timecome4, settimecome4] = useState(23400);
-  const [timegehen4, settimegehen4] = useState(53280);
-  const [workhours4, setworkhours4] = useState(0);
-
-  const [timecome5, settimecome5] = useState(23400);
-  const [timegehen5, settimegehen5] = useState(53280);
-  const [workhours5, setworkhours5] = useState(0);
-
+  const [timecome, settimecome] = useState({ 1: 390, 2: 390, 3: 390, 4: 390, 5: 390 });
+  const [timegehen, settimegehen] = useState({ 1: 900, 2: 900, 3: 900, 4: 900, 5: 900 });
+  const [workhours, setworkhours] = useState({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 });
   const [week, setWeek] = useState<number>(0)
-
   const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
   var currentDay = new Date().getDay();
+
+  useEffect(() => {
+    const storedTimecome = JSON.parse(localStorage.getItem("timecome"));
+    if (storedTimecome) {
+      settimecome(storedTimecome);
+    }
+
+    const storedTimegehen = JSON.parse(localStorage.getItem("timegehen"));
+    if (storedTimegehen) {
+      settimegehen(storedTimegehen);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("timecome", JSON.stringify(timecome));
+    localStorage.setItem("timegehen", JSON.stringify(timegehen));
+    setworkhours({ 1: setRightTime(timecome[1], timegehen[1]),
+    2: setRightTime(timecome[2], timegehen[2]),
+    3: setRightTime(timecome[3], timegehen[3]),
+    4: setRightTime(timecome[4], timegehen[4]),
+    5: setRightTime(timecome[5], timegehen[5]) })
+  }, [timecome, timegehen]);
   
   useEffect(() => {
     const currentDate: Date = new Date()
@@ -42,12 +46,6 @@ export default function Home() {
     const weekNumber: number = Math.ceil(diffInDays / 7)
     setWeek(weekNumber)
 
-    setworkhours1(setRightTime(timecome1, timegehen1))
-    setworkhours2(setRightTime(timecome2, timegehen2))
-    setworkhours3(setRightTime(timecome3, timegehen3))
-    setworkhours4(setRightTime(timecome4, timegehen4))
-    setworkhours5(setRightTime(timecome5, timegehen5))
-    
     var hourTextField:any = document.getElementsByClassName("hourTextField");
     for (var i = 0; i < hourTextField.length; i++) {
       if (hourTextField[i].textContent.startsWith("-")) {
@@ -65,7 +63,7 @@ export default function Home() {
     }
   })
 
-  var wochenstunden = Math.round(((workhours1 - 7.8)+(workhours2 - 7.8)+(workhours3 - 7.8)+(workhours4 - 7.8)+(workhours5 - 7.8)) * 100) / 100;
+  var wochenstunden = Math.round(((workhours[1])+(workhours[2])+(workhours[2])+(workhours[2])+(workhours[2])) * 100) / 100;
   
 
   
@@ -82,61 +80,105 @@ export default function Home() {
       </h1>
 
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-1 md:grid-cols-6 xl:grid-cols-6 pt-1 pb-2 lg:pb-5'>
+
         <div id='Montag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Montag</h5>
-            <TimePicker value={timecome1} onChange={el => settimecome1(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen1} onChange={el => settimegehen1(el)} start="6:30" end="18:00" step="15" format={24} />
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours1.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours1 - 7.8) * 100) / 100}</b></h6>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timecome[1])}
+              onChange={el => settimecome({ ...timecome, 1: formTimestamp(el.target.value)})}
+            />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timegehen[1])}
+              onChange={el => settimegehen({ ...timegehen, 1: formTimestamp(el.target.value)})}
+            />
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[1].toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[1]) * 100) / 100}</b></h6>
         </div>
 
         <div id='Dienstag' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Dienstag</h5>
-            <TimePicker value={timecome2} onChange={el => settimecome2(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen2} onChange={el => settimegehen2(el)} start="6:30" end="18:00" step="15" format={24} />
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours2.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours2 - 7.8) * 100) / 100}</b></h6>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timecome[2])}
+              onChange={el => settimecome({ ...timecome, 2: formTimestamp(el.target.value)})}
+            />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timegehen[2])}
+              onChange={el => settimegehen({ ...timegehen, 2: formTimestamp(el.target.value)})}
+            />
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[2].toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[2]) * 100) / 100}</b></h6>
         </div>
 
-        <div id='Mittwoch' className="col-span-2  max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
+        <div id='Mittwoch' className="col-span-2 max-w-sm p-6  border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Mittwoch</h5>
-            <TimePicker value={timecome3} onChange={el => settimecome3(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen3} onChange={el => settimegehen3(el)} start="6:30" end="18:00" step="15" format={24} />
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours3.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours3 - 7.8) * 100) / 100}</b></h6>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timecome[3])}
+              onChange={el => settimecome({ ...timecome, 3: formTimestamp(el.target.value)})}
+            />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timegehen[3])}
+              onChange={el => settimegehen({ ...timegehen, 3: formTimestamp(el.target.value)})}
+            />
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[3].toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[3]) * 100) / 100}</b></h6>
         </div>
 
-        <div id="Donnerstag" className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
+        <div id='Donnerstag' className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Donnerstag</h5>
-            <TimePicker value={timecome4} onChange={el => settimecome4(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen4} onChange={el => settimegehen4(el)} start="6:30" end="18:00" step="15" format={24} />
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours4.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours4 - 7.8) * 100) / 100}</b></h6>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timecome[4])}
+              onChange={el => settimecome({ ...timecome, 4: formTimestamp(el.target.value)})}
+            />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timegehen[4])}
+              onChange={el => settimegehen({ ...timegehen, 4: formTimestamp(el.target.value)})}
+            />
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[4].toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[4]) * 100) / 100}</b></h6>
         </div>
 
         <div id='Freitag' className="col-span-3 max-w-sm p-6 border border-gray-200 rounded-lg shadow-md">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Freitag</h5>
-            <TimePicker value={timecome5} onChange={el => settimecome5(el)} start="6:30" end="18:00" step="15" format={24} style={{ marginBottom: '0.5rem' }} />
-            <TimePicker value={timegehen5} onChange={el => settimegehen5(el)} start="6:30" end="18:00" step="15" format={24} />
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours5.toFixed(2)}</b></h6>
-            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours5 - 7.8) * 100) / 100}</b></h6>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timecome[5])}
+              onChange={el => settimecome({ ...timecome, 5: formTimestamp(el.target.value)})}
+            />
+            <input
+              className='shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type="time" min="06:30" max="20:00"
+              value={reverseFormTimestamp(timegehen[5])}
+              onChange={el => settimegehen({ ...timegehen, 5: formTimestamp(el.target.value)})}
+            />
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Stunden: <b className='hourTextField'>{workhours[5].toFixed(2)}</b></h6>
+            <h6 className="font-normal text-xl text-gray-700 dark:text-gray-400">Überstunden: <b className='hourTextField'>{Math.round((workhours[5]) * 100) / 100}</b></h6>
         </div>
+
       </div>
       <h4 className='text-gray-600'>{week} KW</h4>
 
 
       <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">Wochenstunden Kontingent: <b className='hourTextField'>{wochenstunden} Std.</b> <br/><br/>
         <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded object-center" onClick={() => {
-                settimecome1(23400);
-                settimegehen1(53280);
-                settimecome2(23400);
-                settimegehen2(53280);
-                settimecome3(23400);
-                settimegehen3(53280);
-                settimecome4(23400);
-                settimegehen4(53280);
-                settimecome5(23400);
-                settimegehen5(53280);
+          settimecome({ 1: 390, 2: 390, 3: 390, 4: 390, 5: 390 })
+          settimegehen({ 1: 888, 2: 888, 3: 888, 4: 888, 5: 888 })
               }}>Zurücksetzen</button>
       </h4>
 
