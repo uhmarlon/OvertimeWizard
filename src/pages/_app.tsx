@@ -1,6 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
 import '../style/index.css'
-import {loadCursor} from '../util/cursor';
 import {useEffect, useRef, useState} from 'react';
 
 function MyApp({ Component, pageProps }) {
@@ -17,14 +16,7 @@ function MyApp({ Component, pageProps }) {
     root.classList.add(preferredColorMode);
   }, []);
 
-  const ballCanvas = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-		if (typeof window === 'undefined' || !ballCanvas.current) {
-			return;
-		}
 
-		return loadCursor(ballCanvas.current);
-	}, []);
 
   return (
     <>
@@ -33,7 +25,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
           </div>
       </div>
-
+    
       <Analytics />
     </>
   );
