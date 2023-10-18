@@ -11,7 +11,7 @@
     "bootstrap": "^4.4.1",
     "next": "latest",
     "openweathermap-ts": "^1.2.10",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.31",
     "react": "^17.0.2",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-time-picker": "^2.0.1",
