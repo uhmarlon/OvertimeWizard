@@ -32,18 +32,21 @@
     }
     else if (time > 390 && time <= 570)
     {
-      time = time - 30;
+      time =- 30;
     }
     else if (time > 570 && time <= 585)
     {
       time = 540;
     }
-    else if (time > 585)
+    else if (time > 585 && time <= 645)
     {
-      time = time - 45;
+      time =- 45;
+    }
+    else if (time > 645)
+    {
+      time = 600;
     }
     return time / 60;
-  
   }
 
   export function setRightOvertime(time:any, hoursToWork:any)
