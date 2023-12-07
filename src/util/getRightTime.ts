@@ -1,25 +1,48 @@
   import Home from "../pages";
 
-  export function setRightTime(come:any, gehen:any) {
-    var time = (gehen - come)/60;
+  var fcome = 0;
+  var lgehen = 0;
 
-    if (time >= 6 && time <= 6.5) 
+  export function setBounds(firstCome:any, lastGehen:any) {
+    fcome = firstCome;
+    lgehen = lastGehen;
+  }
+
+  export function setRightTime(come:any, gehen:any) {
+    
+    if (come < fcome)
     {
-      return 6;
+      come = fcome;
     }
-    else if (time > 6.5 && time <= 9.5)
+    else if (gehen > lgehen)
     {
-      return time - 0.5;
+      gehen = lgehen;
     }
-    else if (time > 9.5 && time <= 9.75)
+    else if (come > lgehen || gehen < fcome || gehen < come)
     {
-      return 9;
+      gehen = 0;
+      come = 0;
     }
-    else if (time > 9.75)
+
+    var time = gehen - come;
+
+    if (time >= 360 && time <= 390) 
     {
-      return time - 0.75;
+      time = 360;
     }
-    return time;
+    else if (time > 390 && time <= 570)
+    {
+      time = time - 30;
+    }
+    else if (time > 570 && time <= 585)
+    {
+      time = 540;
+    }
+    else if (time > 585)
+    {
+      time = time - 45;
+    }
+    return time / 60;
   
   }
 

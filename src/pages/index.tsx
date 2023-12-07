@@ -3,12 +3,14 @@ import Image from 'next/image'
 import TimePicker from 'react-bootstrap-time-picker';
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import { useState, useEffect, useRef } from "react";
-import { setRightTime, setRightOvertime, formTimestamp, reverseFormTimestamp } from "../util/getRightTime";
+import { setBounds, setRightTime, setRightOvertime, formTimestamp, reverseFormTimestamp } from "../util/getRightTime";
 import React from 'react';
 
 
 
 export default function Home() {
+  setBounds(390, 1230);
+
   const [timecome, settimecome] = useState({ 1: 390, 2: 390, 3: 390, 4: 390, 5: 390 });
   const [timegehen, settimegehen] = useState({ 1: 888, 2: 888, 3: 888, 4: 888, 5: 888 });
   const [workhours, setworkhours] = useState({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 });
