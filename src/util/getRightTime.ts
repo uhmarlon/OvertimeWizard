@@ -26,23 +26,23 @@
 
     var time = gehen - come;
 
-    if (time >= 360 && time <= 390) 
+    if (time >= 360 && time <= 390) // 6 to 6.5 hours of worktime including break
     {
       time = 360;
     }
-    else if (time > 390 && time <= 570)
+    else if (time > 390 && time <= 570) // 6.5 to 9.5 hours of worktime including break
     {
-      time =- 30;
+      time = time - 30;
     }
-    else if (time > 570 && time <= 585)
+    else if (time > 570 && time <= 585) // 9.5 to 9.75 hours of worktime including break
     {
       time = 540;
     }
-    else if (time > 585 && time <= 645)
+    else if (time > 585 && time <= 645) // 9.75 to 10.75 hours of worktime including break
     {
-      time =- 45;
+      time = time - 45;
     }
-    else if (time > 645)
+    else if (time > 645) // 10.75 hours or more of worktime including break
     {
       time = 600;
     }
