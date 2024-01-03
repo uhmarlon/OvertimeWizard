@@ -1,8 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
-import TimePicker from "react-bootstrap-time-picker";
-import { Container, Row, Card, Button, Form } from "react-bootstrap";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   setBounds,
   setRightTime,
