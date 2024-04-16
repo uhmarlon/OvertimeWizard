@@ -1,12 +1,33 @@
-## Stundenrechner Stadtwerke München
-A calculator to calculate working hours
+# OvertimeWizard
 
-Dieses Projekt wurde von einem Auszubildenden erstellt und ist nicht offiziell von Stadtwerke München. 
+OvertimeWizard was developed as an apprentice project for the vocational training program at Stadtwerke München. This initiative aims to provide apprentices with real-world experience in software development, enhancing their skills through practical challenges. The project not only serves as a tool for managing work hours but also as a learning platform for aspiring developers in the energy sector.
 
-Dieses Projekt wurde in den ersten 2 Wochen der Ausbildung erstellt und ist nicht mehr aktuell.
+## Features
 
-## disclaimer 
-####    !!!! This is not an official app of Stadtwerke München !!!!
-####    !!!! This is a private project of a trainee !!!!
+- **Track Daily Work Hours**: Enter start and end times for each workday.
+- **Calculate Overtime**: Automatically calculates overtime based on predefined work hours.
+- **Weekly Overview**: Displays weekly totals and overtime in a clear, concise format.
+- **Data Persistence**: Saves your time records locally to ensure you never lose track of your hours.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-![image](https://user-images.githubusercontent.com/35308625/212068828-866ff114-5d2b-4620-a726-f55cc3b98c1c.png)
+## Installation
+
+To get started with OvertimeWizard, follow these simple steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/uhmarlon/OvertimeWizard.git
+   ```
+2. Install dependencies:
+   ```bash
+   cd OvertimeWizard
+   npm install
+   ```
+3. Run the application:
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+After launching the app, you'll be greeted with a weekly view where you can input your arrival and departure times for each day. The application will automatically calculate your regular work hours and any overtime.
