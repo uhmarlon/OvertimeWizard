@@ -305,8 +305,8 @@ export default function Home() {
       </div>
       <h4 className="text-gray-600">{week} KW</h4>
 
-      <h4 className="mt-5 font-bold text-xl md:text-4xl mb-4 text-center">
-        Wochenstunden Kontingent: <br />
+      <h4 className="mt-5 font-bold text-4xl md:text-2xl mb-4 text-center">
+        Wochenstunden Kontingent:{" "}
         <b className="hourTextField">{wochenstunden} Std.</b> <br />
         <br />
         <button
