@@ -1,6 +1,3 @@
-/* Path: src\style\index.css */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-
 /* ensure all pages have Bootstrap CSS */
 @tailwind base;
 @tailwind components;
