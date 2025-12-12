@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/index.css'
 import {useEffect, useRef, useState} from 'react';
 

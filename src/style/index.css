@@ -1,10 +1,7 @@
-/* ensure all pages have Bootstrap CSS */
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Path: src\style\index.css */
-@import '~bootstrap/dist/css/bootstrap.min.css';
 
 .md-container {
   max-width: 800px;
