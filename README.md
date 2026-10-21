@@ -12,6 +12,9 @@ OvertimeWizard was developed as an apprentice project for the vocational trainin
 
 ## Installation
 
+Use Node.js 20.9 or newer. The Tailwind CSS 4 styles require Safari 16.4+,
+Chrome 111+, or Firefox 128+.
+
 To get started with OvertimeWizard, follow these simple steps:
 
 1. Clone the repository:
@@ -21,7 +24,7 @@ To get started with OvertimeWizard, follow these simple steps:
 2. Install dependencies:
    ```bash
    cd OvertimeWizard
-   npm install
+   npm ci
    ```
 3. Run the application:
    ```bash

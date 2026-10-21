@@ -1,5 +1,4 @@
 import { Analytics } from '@vercel/analytics/react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/index.css'
 import {useEffect, useRef, useState} from 'react';
 
@@ -21,7 +20,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <div className="text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-black to-[#001429] min-h-screen">
+      <div className="text-white flex flex-row justify-center w-full h-full bg-linear-to-bl from-black to-[#001429] min-h-screen">
         <div className="w-[80%] md:w-[45rem]">
           <Component {...pageProps} />
           </div>
