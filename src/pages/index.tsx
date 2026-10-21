@@ -121,7 +121,7 @@ export default function Home() {
             Montag
           </h5>
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -131,7 +131,7 @@ export default function Home() {
             }
           />
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -159,7 +159,7 @@ export default function Home() {
             Dienstag
           </h5>
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -169,7 +169,7 @@ export default function Home() {
             }
           />
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -197,7 +197,7 @@ export default function Home() {
             Mittwoch
           </h5>
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -207,7 +207,7 @@ export default function Home() {
             }
           />
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -235,7 +235,7 @@ export default function Home() {
             Donnerstag
           </h5>
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -245,7 +245,7 @@ export default function Home() {
             }
           />
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -273,7 +273,7 @@ export default function Home() {
             Freitag
           </h5>
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
@@ -283,7 +283,7 @@ export default function Home() {
             }
           />
           <input
-            className="shadow appearance-none border rounded w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded bg-white w-full py-2 mb-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
             type="time"
             min="06:30"
             max="20:00"
